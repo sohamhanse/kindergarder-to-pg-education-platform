@@ -8,13 +8,13 @@ const CreateCourse = () => {
     title: '',
     description: '',
     educationalStage: {
-      level: 'primary' // default value
+      level: 'primary'
     }
   });
   const [error, setError] = useState('');
 
   const educationalLevels = [
-    'kindergarten',
+    'kindergarten', 
     'primary',
     'secondary',
     'undergrad',
@@ -41,8 +41,14 @@ const CreateCourse = () => {
     setError('');
 
     try {
-      await axiosInstance.post('/api/courses', formData);
-      navigate('/courses');
+      const response = await axiosInstance.post('/api/courses', {
+        title: formData.title,
+        educationalStage: formData.educationalStage,
+        description: formData.description
+      });
+      if (response.status === 201) {
+        navigate('/courses');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create course');
     }
@@ -53,7 +59,7 @@ const CreateCourse = () => {
       <div className="max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold text-blue-400 mb-6">Create New Course</h1>
         
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 bg-black/40 backdrop-blur-lg rounded-xl border border-blue-900/30 p-6">
           <div>
             <label htmlFor="title" className="block text-sm font-medium text-blue-300 mb-2">
               Course Title *
@@ -74,11 +80,12 @@ const CreateCourse = () => {
 
           <div>
             <label htmlFor="level" className="block text-sm font-medium text-blue-300 mb-2">
-              Educational Level
+              Educational Level *
             </label>
             <select
               id="level"
               name="level"
+              required
               value={formData.educationalStage.level}
               onChange={handleChange}
               className="w-full px-4 py-2 rounded-lg bg-black/40 border border-blue-900/30 
@@ -111,7 +118,7 @@ const CreateCourse = () => {
           </div>
 
           {error && (
-            <div className="text-red-500 text-sm text-center">
+            <div className="text-red-500 text-sm text-center bg-red-500/10 p-3 rounded-lg">
               {error}
             </div>
           )}
@@ -143,4 +150,4 @@ const CreateCourse = () => {
   );
 };
 
-export default CreateCourse; 
+export default CreateCourse;
