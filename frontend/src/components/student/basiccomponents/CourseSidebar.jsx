@@ -1,29 +1,30 @@
 import { useState } from "react";
-import { Search, BookOpen, Plus, Users, Calendar, Clock, Star } from "lucide-react";
+import { Search, BookOpen, Users, Calendar, Clock, Star, MessageCircle } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const CourseSidebar = ({ onCategorySelect, activeCategory }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const categories = [
-    { id: 'all', label: 'All Courses', icon: <BookOpen size={20} /> },
-    { id: 'enrolled', label: 'Enrolled', icon: <Users size={20} /> },
-    { id: 'upcoming', label: 'Upcoming', icon: <Calendar size={20} /> },
-    { id: 'recent', label: 'Recent', icon: <Clock size={20} /> },
-    { id: 'favorites', label: 'Favorites', icon: <Star size={20} /> },
+    { id: 'all', label: 'All Courses', icon: <BookOpen size={20} />, path: '/courses' },
+    { id: 'enrolled', label: 'Enrolled', icon: <Users size={20} />, path: '/courses/enrolled' },
+    { id: 'upcoming', label: 'Upcoming', icon: <Calendar size={20} />, path: '/courses/upcoming' },
+    { id: 'recent', label: 'Recent', icon: <Clock size={20} />, path: '/courses/recent' },
+    { id: 'favorites', label: 'Favorites', icon: <Star size={20} />, path: '/courses/favorites' },
+    { id: 'teacherChat', label: 'Teacher Chat', icon: <MessageCircle size={20} />, path: '/teacherChat' },
   ];
+
+  const handleCategoryClick = (category) => {
+    onCategorySelect(category.id);
+    navigate(category.path);
+  };
 
   return (
     <aside className="w-64 h-full bg-black/40 backdrop-blur-lg border-r border-blue-900/30">
       <div className="p-6">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-xl font-bold text-blue-400">Courses</h2>
-          <button
-            className="p-2 text-blue-400 hover:bg-blue-900/40 rounded-lg transition-colors"
-            title="Create Course"
-          >
-            <Plus size={20} />
-          </button>
-        </div>
+        <h2 className="text-xl font-bold text-blue-400 mb-6">Courses</h2>
 
         {/* Search Bar */}
         <div className="relative mb-6">
@@ -39,24 +40,26 @@ const CourseSidebar = ({ onCategorySelect, activeCategory }) => {
 
         {/* Categories */}
         <nav className="space-y-2">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => onCategorySelect(category.id)}
-              className={`
-                flex items-center w-full px-4 py-3 rounded-lg 
-                transition-all duration-200 transform hover:scale-[1.02]
-                focus:outline-none focus:ring-2 focus:ring-blue-500
-                ${activeCategory === category.id
-                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                  : "text-blue-400 hover:bg-blue-900/40"
-                }
-              `}
-            >
-              {category.icon}
-              <span className="ml-3 font-medium">{category.label}</span>
-            </button>
-          ))}
+          {categories.map((category) => {
+            const isActive = location.pathname === category.path;
+            return (
+              <button
+                key={category.id}
+                onClick={() => handleCategoryClick(category)}
+                className={`
+                  flex items-center w-full px-4 py-3 rounded-lg 
+                  transition-all duration-200 transform hover:scale-[1.02]
+                  ${isActive 
+                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
+                    : "text-blue-400 hover:bg-blue-900/40"
+                  }
+                `}
+              >
+                {category.icon}
+                <span className="ml-3 font-medium">{category.label}</span>
+              </button>
+            );
+          })}
         </nav>
       </div>
     </aside>
