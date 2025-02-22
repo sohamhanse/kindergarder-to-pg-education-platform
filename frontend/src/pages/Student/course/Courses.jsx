@@ -1,11 +1,9 @@
 import { useState, useMemo } from "react";
-import CourseSidebar from "../../../components/student/basiccomponents/CourseSidebar";
 import CourseCard from "../../../components/student/courses/CourseCard";
 import CourseFilters from "../../../components/student/courses/CourseFilters";
-import { Search, Menu } from "lucide-react";
+import { Search } from "lucide-react";
 
 const Courses = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
@@ -135,26 +133,6 @@ const Courses = () => {
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-black to-blue-950">
-      {/* Mobile menu button */}
-      <button 
-        className="sm:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 rounded-lg text-white"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-      >
-        <Menu size={24} />
-      </button>
-
-      {/* Sidebar */}
-      <div className={`
-        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-        sm:translate-x-0 fixed sm:relative z-40
-        transition-transform duration-300 ease-in-out
-      `}>
-        <CourseSidebar 
-          onCategorySelect={setActiveCategory} 
-          activeCategory={activeCategory} 
-        />
-      </div>
-
       {/* Main content */}
       <div className="flex-1 p-8">
         <div className="max-w-7xl mx-auto">

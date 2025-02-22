@@ -1,13 +1,11 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import CourseSidebar from "../../../components/student/basiccomponents/CourseSidebar";
 import CourseCard from "../../../components/student/courses/CourseCard";
 import CourseFilters from "../../../components/student/courses/CourseFilters";
-import { Search, Menu, BookOpen } from "lucide-react";
+import { Search, BookOpen } from "lucide-react";
 
 const EnrolledCourses = () => {
   const navigate = useNavigate();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("enrolled");
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
@@ -78,28 +76,8 @@ const EnrolledCourses = () => {
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-black to-blue-950">
-      {/* Mobile menu button */}
-      <button 
-        className="sm:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 rounded-lg text-white"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-      >
-        <Menu size={24} />
-      </button>
-
-      {/* Sidebar */}
-      <div className={`
-        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-        sm:translate-x-0 fixed sm:relative z-40
-        transition-transform duration-300 ease-in-out
-      `}>
-        <CourseSidebar 
-          onCategorySelect={setActiveCategory} 
-          activeCategory={activeCategory} 
-        />
-      </div>
-
-      {/* Main content */}
-      <div className="flex-1 p-8">
+      {/* Main content - remove sidebar-related classes */}
+      <div className="p-8 w-full">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 space-y-4 sm:space-y-0">
@@ -162,14 +140,6 @@ const EnrolledCourses = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile backdrop */}
-      {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-30 sm:hidden"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
     </div>
   );
 };

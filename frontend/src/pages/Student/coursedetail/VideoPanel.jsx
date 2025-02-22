@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Menu } from "lucide-react";
-import CourseDetailSidebar from "../../../components/student/basiccomponents/CourseDetailSidebar";
 import VideoPlayer from "../../../components/student/CourseDetail/VideoPlayer";
 
 const VideoPanel = () => {
   const { courseId } = useParams();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentVideoId, setCurrentVideoId] = useState(1);
 
   // Mock video data
@@ -21,23 +18,6 @@ const VideoPanel = () => {
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-black to-blue-950">
-      {/* Mobile menu button */}
-      <button 
-        className="sm:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 rounded-lg text-white"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-      >
-        <Menu size={24} />
-      </button>
-
-      {/* Sidebar */}
-      <div className={`
-        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-        sm:translate-x-0 fixed sm:relative z-40
-        transition-transform duration-300 ease-in-out
-      `}>
-        <CourseDetailSidebar />
-      </div>
-
       {/* Main Content */}
       <div className="flex-1 p-8">
         <div className="max-w-7xl mx-auto">
@@ -87,14 +67,6 @@ const VideoPanel = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile backdrop */}
-      {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-30 sm:hidden"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
     </div>
   );
 };

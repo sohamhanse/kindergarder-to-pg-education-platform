@@ -2,11 +2,8 @@ import { useState, useMemo } from "react";
 import ChatHeader from "../../../components/student/teacherChat/ChatHeader";
 import ChatMessages from "../../../components/student/teacherChat/ChatMassages";
 import MessageInput from "../../../components/student/teacherChat/MessageInput";
-import CourseSidebar from "../../../components/student/basiccomponents/CourseSidebar";
-import { Menu } from "lucide-react";
 
 const TeacherChat = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [messages, setMessages] = useState([
@@ -65,28 +62,7 @@ const TeacherChat = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black to-blue-950">
-      {/* Mobile Menu Button */}
-      <button 
-        className="sm:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 rounded-lg text-white"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-      >
-        <Menu size={24} />
-      </button>
-
       <div className="flex h-screen">
-        {/* Sidebar */}
-        <div className={`
-          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-          sm:translate-x-0 fixed sm:relative z-40
-          transition-transform duration-300 ease-in-out
-        `}>
-          <CourseSidebar 
-            onCategorySelect={setActiveCategory} 
-            activeCategory={activeCategory}
-          />
-        </div>
-
-        {/* Chat Area */}
         <div className="flex-1 flex flex-col w-full">
           <ChatHeader 
             teacher={teacher} 
@@ -98,14 +74,6 @@ const TeacherChat = () => {
           />
           <MessageInput onSendMessage={handleSendMessage} />
         </div>
-
-        {/* Backdrop for mobile */}
-        {isSidebarOpen && (
-          <div 
-            className="fixed inset-0 bg-black/50 z-30 sm:hidden"
-            onClick={() => setIsSidebarOpen(false)}
-          />
-        )}
       </div>
     </div>
   );
