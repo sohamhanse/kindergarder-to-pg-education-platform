@@ -10,6 +10,8 @@ import CourseDetail from './pages/Student/coursedetail/CourseDetail';
 import VideoPanel from './pages/Student/coursedetail/VideoPanel';
 import Sidebar from './components/common/Sidebar';
 import { useState } from 'react';
+import QuizPanel from './pages/Student/coursedetail/QuizPanel';
+import QuizResult from './pages/Student/coursedetail/QuizResult';
 
 function App() {
   const [userName] = useState("John Doe"); // Replace with actual user data
@@ -32,14 +34,14 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/course" element={<Courses />} />
             <Route path="/courses/create" element={<CreateCourse />} />
             <Route path="/teacherChat" element={<TeacherChat />} />
             <Route path="/courses/enrolled" element={<EnrolledCourses />} />
-            <Route path="/courses/:courseId" element={<CourseDetail />}>
-              <Route index element={<Navigate to="videos" replace />} />
-              <Route path="videos" element={<VideoPanel />} />
-            </Route>
+            <Route path="/courses/:courseId" element={<CourseDetail />}/>
+              <Route path='/quiz' element={<QuizPanel />} />
+              <Route path="/quiz/result" element={<QuizResult />} />
+            {/* </Route> */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>

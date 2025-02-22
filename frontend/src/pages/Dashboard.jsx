@@ -4,8 +4,6 @@ import { Home, ClipboardList, Calendar, User, Bell, Search, Settings } from "luc
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState("overview");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const stats = [
@@ -31,84 +29,10 @@ const Dashboard = () => {
     setSearchQuery(e.target.value);
   };
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
-    <div className="flex flex-col sm:flex-row min-h-screen w-full bg-gradient-to-br from-black to-blue-950 transition-all duration-300">
-      {/* Mobile Menu Button with Smooth Animation */}
-      <button 
-        className="sm:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 rounded-lg text-white hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        onClick={toggleSidebar}
-        aria-label="Toggle Menu"
-      >
-        <svg 
-          className="w-6 h-6 transition-transform duration-300" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d={isSidebarOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} 
-          />
-        </svg>
-      </button>
-
-      {/* Responsive Sidebar with Backdrop Blur */}
-      <aside 
-        className={`
-          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-          sm:translate-x-0 fixed sm:relative w-64 h-full 
-          bg-black/40 backdrop-blur-lg border-r border-blue-900/30 
-          transition-all duration-300 ease-in-out z-40
-          overflow-y-auto scrollbar-thin scrollbar-thumb-blue-600
-        `}
-      >
-        <div className="sticky top-0 p-6">
-          <h2 className="text-2xl font-bold text-blue-400 mb-8 select-none">EduDash</h2>
-          <nav className="space-y-2">
-            {[
-              { icon: <Home size={20} />, label: "Overview", id: "overview" },
-              { icon: <ClipboardList size={20} />, label: "Activities", id: "activities" },
-              { icon: <Calendar size={20} />, label: "Courses", id: "courses" },
-              { icon: <User size={20} />, label: "Profile", id: "profile" },
-            ].map((item) => (
-              <button
-                key={item.id}
-                className={`
-                  flex items-center w-full px-4 py-3 rounded-lg 
-                  transition-all duration-200 transform hover:scale-[1.02]
-                  focus:outline-none focus:ring-2 focus:ring-blue-500
-                  ${selectedTab === item.id
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                    : "text-blue-400 hover:bg-blue-900/40"
-                  }
-                `}
-                onClick={() => {
-                  setSelectedTab(item.id);
-                  if (item.id === "courses") {
-                    navigate('/courses');
-                  } else if (item.id === "activities") {
-                    navigate('/activities');
-                  } else {
-                    navigate(`/${item.id}`);
-                  }
-                }}
-              >
-                {item.icon}
-                <span className="ml-3 font-medium">{item.label}</span>
-              </button>
-            ))}
-          </nav>
-        </div>
-      </aside>
-
-      {/* Main Content Area */}
-      <main className="flex-1 overflow-x-hidden w-full bg-opacity-50">
+    <div className="flex flex-col min-h-screen w-full bg-gradient-to-br from-black to-blue-950 transition-all duration-300">
+      {/* Main Content Area - removed flex-1 since we don't have sidebar anymore */}
+      <main className="w-full bg-opacity-50">
         {/* Responsive Top Bar */}
         <div className="sticky top-0 bg-black/40 backdrop-blur-lg border-b border-blue-900/30 p-4 z-30">
           <div className="flex flex-col sm:flex-row items-center justify-between max-w-7xl mx-auto gap-4 sm:gap-0">
