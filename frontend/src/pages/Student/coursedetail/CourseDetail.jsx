@@ -2,21 +2,14 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import SubjectSidebar from "../../../components/student/basiccomponents/CourseDetailSidebar";
 import { Menu } from "lucide-react";
+import axios from "axios";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Mock course data - replace with actual data fetching
-  const courseData = {
-    id: courseId,
-    title: "Web Development Fundamentals",
-    instructor: "Dr. John Doe",
-    progress: 45,
-    currentModule: "JavaScript Basics",
-    lastAccessed: "2024-03-15",
-    description: "Learn the fundamentals of web development including HTML, CSS, and JavaScript."
-  };
+  const response = axios.get("https://localhost:5000/api/courses")
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-black to-blue-950">

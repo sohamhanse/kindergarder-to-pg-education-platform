@@ -2,7 +2,7 @@ import { PlayCircle, Clock } from "lucide-react";
 
 const VideoContentPanel = ({ videos, currentVideoId, onVideoSelect }) => {
   return (
-    <div className="bg-black/40 backdrop-blur-lg rounded-xl border border-blue-900/30 p-4">
+    <div className="w-full bg-black/40 backdrop-blur-lg rounded-xl border border-blue-900/30 p-4">
       <h3 className="text-xl font-bold text-white mb-4">Course Content</h3>
       
       <div className="space-y-2">

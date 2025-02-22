@@ -11,10 +11,14 @@ const VideoPanel = () => {
 
   // Mock video data
   const videos = [
-    { id: 1, title: "Introduction to the Course", duration: "10:30", url: "video-url-1" },
+    { 
+      id: 1, 
+      title: "Introduction to the Course", 
+      duration: "10:30", 
+      url: "/12956927_1920_1080_25fps.mp4" 
+    },
     { id: 2, title: "Getting Started with Basics", duration: "15:45", url: "video-url-2" },
     { id: 3, title: "Advanced Concepts", duration: "20:15", url: "video-url-3" },
-    // Add more videos...
   ];
 
   const currentVideo = videos.find(v => v.id === currentVideoId);
@@ -39,11 +43,11 @@ const VideoPanel = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="flex-1 p-4 sm:p-6 lg:p-8 w-full overflow-hidden">
+        <div className="max-w-[1920px] mx-auto">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
             {/* Video Player Section */}
-            <div className="lg:col-span-3">
+            <div className="xl:col-span-9">
               <VideoPlayer 
                 videoUrl={currentVideo.url}
                 title={currentVideo.title}
@@ -59,10 +63,10 @@ const VideoPanel = () => {
             </div>
 
             {/* Video List Section */}
-            <div className="lg:col-span-1">
-              <div className="bg-black/40 backdrop-blur-lg rounded-xl border border-blue-900/30 p-4">
+            <div className="xl:col-span-3">
+              <div className="bg-black/40 backdrop-blur-lg rounded-xl border border-blue-900/30 p-4 sticky top-4">
                 <h3 className="text-xl font-bold text-blue-400 mb-4">Course Videos</h3>
-                <div className="space-y-2">
+                <div className="space-y-2 max-h-[calc(100vh-16rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-blue-900/20">
                   {videos.map((video) => (
                     <button
                       key={video.id}
