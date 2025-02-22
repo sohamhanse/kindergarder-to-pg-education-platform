@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import './App.css';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import Courses from './pages/Student/course/courses';
+import Courses from './pages/Student/course/Courses';
 
 function App() {
   return (
