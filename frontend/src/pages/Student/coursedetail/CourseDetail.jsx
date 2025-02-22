@@ -1,35 +1,13 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
-import SubjectSidebar from "../../../components/student/basiccomponents/CourseDetailSidebar";
-import { Menu } from "lucide-react";
-import axios from "axios";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Mock course data - replace with actual data fetching
   const response = axios.get("https://localhost:5000/api/courses")
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-black to-blue-950">
-      {/* Mobile menu button */}
-      <button 
-        className="sm:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 rounded-lg text-white"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-      >
-        <Menu size={24} />
-      </button>
-
-      {/* Subject Sidebar */}
-      <div className={`
-        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-        sm:translate-x-0 fixed sm:relative z-40
-        transition-transform duration-300 ease-in-out
-      `}>
-        <SubjectSidebar courseId={courseId} />
-      </div>
-
       {/* Main Content */}
       <div className="flex-1 p-8">
         <div className="max-w-7xl mx-auto">
@@ -69,14 +47,6 @@ const CourseDetail = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile backdrop */}
-      {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-30 sm:hidden"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
     </div>
   );
 };
