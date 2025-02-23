@@ -12,6 +12,9 @@ import Sidebar from './components/common/Sidebar';
 import { useState } from 'react';
 import QuizPanel from './pages/Student/coursedetail/QuizPanel';
 import QuizResult from './pages/Student/coursedetail/QuizResult';
+import Chatbot from './components/common/Chatbot';
+import AvatarChatbot from './components/common/AvatarChatbot';
+import AssignmentUploadPanel from './pages/Student/coursedetail/AssignmentUploadPanel';
 
 function App() {
   const [userName] = useState("John Doe"); // Replace with actual user data
@@ -28,6 +31,7 @@ function App() {
             element={<Sidebar role={userRole} userName={userName} />}
           />
         </Routes>
+        <AvatarChatbot />
 
         {/* Main content */}
         <div className="flex-1">
@@ -39,8 +43,9 @@ function App() {
             <Route path="/teacherChat" element={<TeacherChat />} />
             <Route path="/courses/enrolled" element={<EnrolledCourses />} />
             <Route path="/courses/:courseId" element={<CourseDetail />}/>
-              <Route path='/quiz' element={<QuizPanel />} />
-              <Route path="/quiz/result" element={<QuizResult />} />
+            <Route path='/quiz' element={<QuizPanel />} />
+            <Route path="/quiz/result" element={<QuizResult />} />
+            <Route path="/assignmentupload" element={<AssignmentUploadPanel />} />
             {/* </Route> */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
