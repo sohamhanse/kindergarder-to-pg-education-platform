@@ -12,108 +12,35 @@ const Courses = () => {
     level: "all"
   });
 
-  // Sample course data
-  const courses = [
-    {
-      id: 1,
-      title: "Web Development Fundamentals",
-      category: "Programming",
-      image: "https://www.shutterstock.com/image-vector/programming-software-development-web-page-260nw-1682028748.jpg",
-      enrolledCount: 156,
-      duration: "8 weeks",
-      level: "Beginner"
-    },
-    {
-      id: 2,
-      title: "UI/UX Design Principles",
-      category: "Design",
-      image: "https://www.shutterstock.com/image-vector/programming-software-development-web-page-260nw-1682028748.jpg",
-      enrolledCount: 234,
-      duration: "6 weeks",
-      level: "Intermediate"
-    },
-    {
-      id: 3,
-      title: "Business Analytics",
-      category: "Business",
-      image: "https://www.shutterstock.com/image-vector/programming-software-development-web-page-260nw-1682028748.jpg  ",
-      enrolledCount: 189,
-      duration: "10 weeks",
-      level: "Advanced"
-    },
-    {
-      id: 4,
-      title: "Advanced Calculus",
-      category: "Mathematics",
-      image: "https://www.shutterstock.com/image-vector/mathematics-education-subject-matter-icon-260nw-1892490175.jpg",
-      enrolledCount: 124,
-      duration: "12 weeks",
-      level: "Advanced"
-    },
-    {
-      id: 5,
-      title: "Mobile App Development",
-      category: "Programming",
-      image: "https://www.shutterstock.com/image-vector/mobile-app-development-concept-vector-260nw-1894191736.jpg",
-      enrolledCount: 278,
-      duration: "10 weeks",
-      level: "Intermediate"
-    },
-    {
-      id: 6,
-      title: "Digital Marketing Essentials",
-      category: "Business",
-      image: "https://www.shutterstock.com/image-vector/digital-marketing-concept-vector-illustration-260nw-1892384751.jpg",
-      enrolledCount: 312,
-      duration: "6 weeks",
-      level: "Beginner"
-    },
-    {
-      id: 7,
-      title: "Graphic Design Fundamentals",
-      category: "Design",
-      image: "https://www.shutterstock.com/image-vector/graphic-design-concept-vector-illustration-260nw-1893772747.jpg",
-      enrolledCount: 198,
-      duration: "8 weeks",
-      level: "Beginner"
-    },
-    {
-      id: 8,
-      title: "Data Structures & Algorithms",
-      category: "Programming",
-      image: "https://www.shutterstock.com/image-vector/algorithms-data-structures-concept-vector-260nw-1892384755.jpg",
-      enrolledCount: 167,
-      duration: "12 weeks",
-      level: "Advanced"
-    },
-    {
-      id: 9,
-      title: "Linear Algebra",
-      category: "Mathematics",
-      image: "https://www.shutterstock.com/image-vector/mathematics-education-subject-matter-icon-260nw-1892490178.jpg",
-      enrolledCount: 145,
-      duration: "8 weeks",
-      level: "Intermediate"
-    },
-    {
-      id: 10,
-      title: "Project Management",
-      category: "Business",
-      image: "https://www.shutterstock.com/image-vector/project-management-concept-vector-illustration-260nw-1893772750.jpg",
-      enrolledCount: 289,
-      duration: "10 weeks",
-      level: "Intermediate"
-    },
-    {
-      id: 11,
-      title: "Python Programming",
-      category: "Programming",
-      image: "https://www.shutterstock.com/image-vector/programming-code-icon-260nw-1892384758.jpg",
-      enrolledCount: 423,
-      duration: "8 weeks",
-      level: "Beginner"
-    }
-  ];
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [courses, setCoursesData] = useState([]);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('https://kindergarden-to-pg-education-platform.onrender.com/api/courses', {
+          params: {
+            category: filters.category !== 'all' ? filters.category : undefined,
+            duration: filters.duration !== 'all' ? filters.duration : undefined,
+            level: filters.level !== 'all' ? filters.level : undefined,
+            search: searchQuery || undefined
+          }
+        });
+        setCoursesData(response.data);
+        setError(null);
+      } catch (err) {
+        setError('Failed to fetch courses. Please try again later.');
+        console.error('Error fetching courses:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, [filters, searchQuery]);
+
 
   const filteredCourses = useMemo(() => {
     return courses.filter(course => {
