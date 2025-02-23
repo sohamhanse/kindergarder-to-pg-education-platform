@@ -41,6 +41,7 @@ function App() {
             element={<Sidebar role={userRole} userName={userName} />}
           />
         </Routes>
+        <AvatarChatbot />
 
         {/* Main content */}
         <div className="flex-1">
