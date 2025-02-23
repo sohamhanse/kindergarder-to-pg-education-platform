@@ -32,6 +32,7 @@ import { useState } from "react";
 import TeacherUploadVideo from "./pages/teacher/UploadVideo";
 import AssignmentUploadPanel from "./pages/Student/coursedetail/AssignmentUploadPanel";
 import AvatarChatbot from "./components/common/AvatarChatbot";
+import TalkingAvatar from "./components/TalkingAvatar";
 
 // Teacher Routes
 import TeacherDashboard from "./pages/teacher/Dashboard";
@@ -42,6 +43,8 @@ import StudentList from "./components/teacher/StudentList";
 import StudentReport from "./components/teacher/StudentReport";
 import Whiteboard from "./components/common/Whiteboard";
 import AssignmentFeedback from "./components/common/AssignmentFeedback";
+import DeepseekChat from "./pages/DeepseekChat";
+
 function App() {
   const [userName] = useState("John Doe"); // Replace with actual user data
   const [userRole] = useState("student"); // Replace with actual user role
