@@ -16,19 +16,11 @@
     "axios": "^1.7.9",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.475.0",
-<<<<<<< HEAD
-    "ollama": "^0.5.13",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^7.2.0",
-    "react-speech-recognition": "^3.10.0",
-=======
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
     "react-router-dom": "^7.2.0",
     "recharts": "^2.15.1",
->>>>>>> 785ec61ddbff955e24db5e563618cd90bbe2205e
     "say": "^0.16.0",
     "tailwindcss": "^4.0.8"
   },
