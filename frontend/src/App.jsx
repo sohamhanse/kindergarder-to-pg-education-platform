@@ -41,7 +41,7 @@ import AttendanceTracker from "./pages/teacher/AttendanceTracker";
 import StudentList from "./components/teacher/StudentList";
 import StudentReport from "./components/teacher/StudentReport";
 import Whiteboard from "./components/common/Whiteboard";
-
+import AssignmentFeedback from "./components/common/AssignmentFeedback";
 function App() {
   const [userName] = useState("John Doe"); // Replace with actual user data
   const [userRole] = useState("student"); // Replace with actual user role
@@ -122,6 +122,7 @@ function App() {
               <Route path="students" element={<StudentList />} />
               <Route path="student/:id" element={<StudentReport />} />
               <Route path="whiteboard" element={<Whiteboard />} />
+              <Route path="assignment-feedback" element={<AssignmentFeedback />} />
             </Route>
 
             {/* <Route path="/teacher-courses"> */}
