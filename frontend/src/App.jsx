@@ -1,39 +1,46 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 // import './App.css';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 // Student Course Related
-import Courses from './pages/Student/course/Courses';
-import CreateCourse from './pages/Student/course/CreateCourse';
-import EnrolledCourses from './pages/Student/course/EnrolledCourses';
-import CourseDetail from './pages/Student/coursedetail/CourseDetail';
+import Courses from "./pages/Student/course/Courses";
+import CreateCourse from "./pages/Student/course/CreateCourse";
+import EnrolledCourses from "./pages/Student/course/EnrolledCourses";
+import CourseDetail from "./pages/Student/coursedetail/CourseDetail";
 // Student Practice
-import WordAccuracy from './pages/Student/practice/WordAccuracy';
-import VoiceAccuracy from './pages/Student/practice/VoiceAccuracy';
-import AccuracyTest from './pages/Student/practice/AccuracyTest';
+import WordAccuracy from "./pages/Student/practice/WordAccuracy";
+import VoiceAccuracy from "./pages/Student/practice/VoiceAccuracy";
+import AccuracyTest from "./pages/Student/practice/AccuracyTest";
 // Student Quiz
-import QuizPanel from './pages/Student/coursedetail/QuizPanel';
-import QuizResult from './pages/Student/coursedetail/QuizResult';
+import QuizPanel from "./pages/Student/coursedetail/QuizPanel";
+import QuizResult from "./pages/Student/coursedetail/QuizResult";
 // Student Meeting
-import OnlineMeeting from './pages/Student/meeting/OnlineMeeting';
-import ScheduleMeet from './pages/Student/meeting/SheduleMeet';
-import JoinMeeting from './pages/Student/meeting/JoinMeeting';
+import OnlineMeeting from "./pages/Student/meeting/OnlineMeeting";
+import ScheduleMeet from "./pages/Student/meeting/SheduleMeet";
+import JoinMeeting from "./pages/Student/meeting/JoinMeeting";
 // Student Components
-import TeacherChat from './pages/Student/teacher_chat/TeacherChat';
-import VideoPanel from './pages/Student/coursedetail/VideoPanel';
-import EducationPath from './components/student/basiccomponents/EducationPath';
-import Sidebar from './components/common/Sidebar';
-import { useState } from 'react';
-import TeacherUploadVideo from './pages/teacher/UploadVideo';
-import AssignmentUploadPanel from './pages/Student/coursedetail/AssignmentUploadPanel';
-import AvatarChatbot from './components/common/AvatarChatbot';
-
+import TeacherChat from "./pages/Student/teacher_chat/TeacherChat";
+import VideoPanel from "./pages/Student/coursedetail/VideoPanel";
+import EducationPath from "./components/student/basiccomponents/EducationPath";
+import Sidebar from "./components/common/Sidebar";
+import { useState } from "react";
+import TeacherUploadVideo from "./pages/teacher/UploadVideo";
+import AssignmentUploadPanel from "./pages/Student/coursedetail/AssignmentUploadPanel";
+import AvatarChatbot from "./components/common/AvatarChatbot";
 
 // Teacher Routes
-import TeacherDashboard from './pages/teacher/Dashboard';
-import UploadVideo from './pages/teacher/UploadVideo';
-import ScheduleMeetingForm from './pages/teacher/ScheduleMeetingForm';
-import AttendanceTracker from './pages/teacher/AttendanceTracker';
+import TeacherDashboard from "./pages/teacher/Dashboard";
+import UploadVideo from "./pages/teacher/UploadVideo";
+import ScheduleMeetingForm from "./pages/teacher/ScheduleMeetingForm";
+import AttendanceTracker from "./pages/teacher/AttendanceTracker";
+import StudentList from "./components/teacher/StudentList";
+import StudentReport from "./components/teacher/StudentReport";
+import Whiteboard from "./components/common/Whiteboard";
 
 function App() {
   const [userName] = useState("John Doe"); // Replace with actual user data
@@ -107,20 +114,23 @@ function App() {
               <Route path="UploadVideo" element={<TeacherUploadVideo />} />
               <Route path="ScheduleMeeting" element={<ScheduleMeetingForm />} />
               <Route path="AttendanceTracker" element={<AttendanceTracker />} />
+              <Route path="students" element={<StudentList />} />
+              <Route path="student/:id" element={<StudentReport />} />
+              <Route path="whiteboard" element={<Whiteboard />} />
             </Route>
 
             {/* <Route path="/teacher-courses"> */}
-                {/* <Route index element={<Navigate to="all" />} /> */}
-                {/* <Route path="/all" element={<TeacherCourses />} /> */}
-                {/* <Route path="/create" element={<CreateCourse />} /> */}
-                {/* <Route path="/:courseId"> */}
-                  {/* <Route index element={<TeacherCourseDetail />} /> */}
-                  {/* <Route path="/upload-video" element={<UploadVideo />} /> */}
-                  {/* <Route path="/quiz" element={<TeacherQuizPanel />} />
+            {/* <Route index element={<Navigate to="all" />} /> */}
+            {/* <Route path="/all" element={<TeacherCourses />} /> */}
+            {/* <Route path="/create" element={<CreateCourse />} /> */}
+            {/* <Route path="/:courseId"> */}
+            {/* <Route index element={<TeacherCourseDetail />} /> */}
+            {/* <Route path="/upload-video" element={<UploadVideo />} /> */}
+            {/* <Route path="/quiz" element={<TeacherQuizPanel />} />
                   <Route path="/assignments" element={<TeacherAssignments />} />
                   <Route path="/attendance" element={<TeacherAttendance />} /> */}
-                  {/* <Route path="/progress" element={<TeacherProgress />} /> */}
-                {/* </Route>
+            {/* <Route path="/progress" element={<TeacherProgress />} /> */}
+            {/* </Route>
               </Route> */}
           </Routes>
         </div>
