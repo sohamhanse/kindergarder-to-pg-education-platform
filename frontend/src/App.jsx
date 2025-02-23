@@ -25,6 +25,8 @@ import EducationPath from './components/student/basiccomponents/EducationPath';
 import Sidebar from './components/common/Sidebar';
 import { useState } from 'react';
 import UploadVideo from './pages/teacher/UploadVideo';
+import TalkingAvatar from './components/TalkingAvatar';
+import DeepseekChat from './pages/DeepseekChat';
 
 function App() {
   const [userName] = useState("John Doe"); // Replace with actual user data
@@ -41,7 +43,7 @@ function App() {
             element={<Sidebar role={userRole} userName={userName} />}
           />
         </Routes>
-        <AvatarChatbot />
+        {/* <AvatarChatbot /> */}
 
         {/* Main content */}
         <div className="flex-1">
@@ -82,9 +84,14 @@ function App() {
               <Route path="voice" element={<VoiceAccuracy />} />
             </Route>
 
+            <Route path="/talking-avatar" element={<TalkingAvatar />} />
+
             {/* Other Routes */}
             <Route path="/teacher-chat" element={<TeacherChat />} />
             <Route path="/education-path" element={<EducationPath />} />
+
+            {/* Deepseek Chat Route */}
+            <Route path="/deepseek-chat" element={<DeepseekChat />} />
 
             {/* Default Routes */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
