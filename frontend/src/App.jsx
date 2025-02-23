@@ -25,6 +25,8 @@ import EducationPath from './components/student/basiccomponents/EducationPath';
 import Sidebar from './components/common/Sidebar';
 import { useState } from 'react';
 import UploadVideo from './pages/teacher/UploadVideo';
+import AssignmentUploadPanel from './pages/Student/coursedetail/AssignmentUploadPanel';
+import AvatarChatbot from './components/common/AvatarChatbot';
 
 function App() {
   const [userName] = useState("John Doe"); // Replace with actual user data
@@ -44,7 +46,7 @@ function App() {
         <AvatarChatbot />
 
         {/* Main content */}
-        <div className="flex-1">
+        <div className="flex-1 bg-black ">
           <Routes>
             {/* Auth Routes */}
             <Route path="/login" element={<Login />} />
@@ -80,6 +82,7 @@ function App() {
               <Route path="accuracy" element={<AccuracyTest />} />
               <Route path="word" element={<WordAccuracy />} />
               <Route path="voice" element={<VoiceAccuracy />} />
+              <Route path="assignment" element={<AssignmentUploadPanel />} />
             </Route>
 
             {/* Other Routes */}
