@@ -24,9 +24,16 @@ import VideoPanel from './pages/Student/coursedetail/VideoPanel';
 import EducationPath from './components/student/basiccomponents/EducationPath';
 import Sidebar from './components/common/Sidebar';
 import { useState } from 'react';
-import UploadVideo from './pages/teacher/UploadVideo';
+import TeacherUploadVideo from './pages/teacher/UploadVideo';
 import AssignmentUploadPanel from './pages/Student/coursedetail/AssignmentUploadPanel';
 import AvatarChatbot from './components/common/AvatarChatbot';
+
+
+// Teacher Routes
+import TeacherDashboard from './pages/teacher/Dashboard';
+import UploadVideo from './pages/teacher/UploadVideo';
+import ScheduleMeetingForm from './pages/teacher/ScheduleMeetingForm';
+import AttendanceTracker from './pages/teacher/AttendanceTracker';
 
 function App() {
   const [userName] = useState("John Doe"); // Replace with actual user data
@@ -92,6 +99,15 @@ function App() {
             {/* Default Routes */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
+
+            <Route path="/Teacher">
+              <Route index element={<Navigate to="Dashboard" />} />
+              <Route path="all" element={<TeacherDashboard />} />
+              <Route path="Dashboard" element={<Dashboard />} />
+              <Route path="UploadVideo" element={<TeacherUploadVideo />} />
+              <Route path="ScheduleMeeting" element={<ScheduleMeetingForm />} />
+              <Route path="AttendanceTracker" element={<AttendanceTracker />} />
+            </Route>
 
             {/* <Route path="/teacher-courses"> */}
                 {/* <Route index element={<Navigate to="all" />} /> */}
